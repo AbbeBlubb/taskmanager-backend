@@ -1,41 +1,40 @@
 const express = require('express');
-const bodyParser = require('body-parser')
 const mongoose = require('mongoose');
-require('dotenv').config();
+//const bodyParser = require('body-parser');
+
 const users = require('./users');
 
 const app = express();
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(bodyParser.json())
+
+// Takes the raw requests and turns them into usable properties on req.body
+//app.use(bodyParser.urlencoded({ extended: true }));
+//app.use(bodyParser.json());
+
+// Set indentation to 2 spaces for response
 app.set('json spaces', 2);
 
-var currentdate = new Date(); 
-var time = currentdate.getHours() + ":" + currentdate.getMinutes() + ":" + currentdate.getSeconds();
+const USER = mongoose.model('user', {});
+const TODO = mongoose.model('todo', {});
 
-
-const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/taskmanager-backend"
-mongoose.connect(mongoUrl, { useNewUrlParser: true })
-mongoose.Promise = global.Promise;
-mongoose.connection.on("error", err => console.error("Connection error:", err))
-mongoose.connection.once("open", () => console.log("## taskmanager-backends is connected to mongodb ##"))
-
-
-
-
-
-
+// Routes
 app.get('/users', function(req, res){
-  res.json(users)
-})
+  USER.find()
+  .then(users => {
+    res.json(users)
+  })
+});
 
-app.get('/users/:id', function(req, res){
-  res.json({key: {second:'One specific user'}})
-})
+app.get('/todos', function(req, res){
+  TODO.find()
+    .then(todos => {
+      res.json(todos)
+    })
+});
 
 app.post('/users', function(req, res){
   console.log(req.body)
   res.json(req.body)
-})
+});
 
-const port = process.env.PORT || 3000;
-app.listen(port, function(){console.log("## Listening on port "+ port +" ##" + "\n## Time is: " + time + " ##")});
+// Export the module so it can be required in start.js
+module.exports = app;
