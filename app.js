@@ -2,8 +2,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 //const bodyParser = require('body-parser');
 
-const users = require('./users');
-
 const app = express();
 
 // Takes the raw requests and turns them into usable properties on req.body
@@ -18,7 +16,7 @@ const TODO = mongoose.model('todo', {});
 
 // Routes
 app.get('/users', function(req, res){
-  USER.find()
+  USER.find({})
   .then(users => {
     res.json(users)
   })
