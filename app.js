@@ -1,8 +1,10 @@
 const express = require('express');
+const cors = require('cors')
 const mongoose = require('mongoose');
 //const bodyParser = require('body-parser');
-
 const app = express();
+
+app.use(cors());
 
 // Takes the raw requests and turns them into usable properties on req.body
 //app.use(bodyParser.urlencoded({ extended: true }));
@@ -29,10 +31,10 @@ app.get('/todos', function(req, res){
     })
 });
 
-app.post('/users', function(req, res){
+/*app.post('/users', function(req, res){
   console.log(req.body)
   res.json(req.body)
-});
+});*/
 
 // Export the module so it can be required in start.js
 module.exports = app;
