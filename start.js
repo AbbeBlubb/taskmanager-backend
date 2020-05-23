@@ -6,7 +6,7 @@ const helpers = require('./helpers');
 
 // Connect to DB, tell Mongoose to use ES6 promises, handle errors, inform about connection
 const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/"
-mongoose.connect(mongoUrl, { useNewUrlParser: true, dbName: 'taskmanager-backend' })
+mongoose.connect(mongoUrl, { useNewUrlParser: true, dbName: 'taskmanager' })
 mongoose.Promise = global.Promise;
 mongoose.connection.on("error", err => {
   console.error("Message from start.js, on error: Connection error:", err)
