@@ -29,6 +29,3 @@ app.listen(port, function(){
     "## Listening on port " + port + " ##" + "\n## Time is: " + helpers.getTime() + " ##"
   )
 });
-
-
-
