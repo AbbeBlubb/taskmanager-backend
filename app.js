@@ -31,10 +31,5 @@ app.get('/todos', function(req, res){
     })
 });
 
-/*app.post('/users', function(req, res){
-  console.log(req.body)
-  res.json(req.body)
-});*/
-
 // Export the module so it can be required in start.js
 module.exports = app;
