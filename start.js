@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const helpers = require('./helpers');
 
 // Import .env-vars
-require('dotenv').config();
+//require('dotenv').config();
 
 // Connect to DB, tell Mongoose to use ES6 promises, handle errors, inform about connection
 const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/"
